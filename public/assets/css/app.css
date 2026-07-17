@@ -1,0 +1,27 @@
+/* JointaSoft - Custom Styles */
+/* Augments Tailwind CSS via CDN */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom selection color */
+::selection {
+    background-color: rgba(99, 102, 241, 0.2);
+    color: #312e81;
+}
+
+/* Focus visible ring for accessibility */
+*:focus-visible {
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Print styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
