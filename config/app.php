@@ -15,7 +15,7 @@ return [
     'app_env' => env('APP_ENV', 'production'),
     'app_debug' => env('APP_DEBUG', false),
     'app_url' => env('APP_URL', 'http://localhost'),
-    'app_base_path' => '/jointasoft',
+    'app_base_path' => env('APP_BASE_PATH', '/jointasoft'),
 
     // Database
     'db_connection' => env('DB_CONNECTION', 'mysql'),
