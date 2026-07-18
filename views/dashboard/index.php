@@ -170,10 +170,7 @@
                     <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-bold <?= $stats['pending_reviews'] > 0 ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-500' ?>"><?= $stats['pending_reviews'] ?></span>
                 </div>
                 <?php if ($isAdmin): ?>
-                <div class="flex justify-between items-center">
-                    <p class="text-sm text-slate-600 font-medium">Expense Approvals</p>
-                    <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-bold <?= $pendingExpenses > 0 ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-500' ?>"><?= $pendingExpenses ?></span>
-                </div>
+                <!-- Expenses feature removed -->
                 <?php endif; ?>
             </div>
         </div>
