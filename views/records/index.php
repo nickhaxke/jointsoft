@@ -64,12 +64,12 @@
             <table class="min-w-full divide-y divide-slate-200" id="recordsTable">
                 <thead class="bg-slate-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Record ID</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Contribution</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Record ID</th>
+                        <th scope="col" class="hidden sm:table-cell px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount</th>
+                        <th scope="col" class="hidden md:table-cell px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Contribution</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-slate-100">
@@ -89,11 +89,11 @@
                     <?php else: ?>
                         <?php foreach ($records as $record): ?>
                         <tr class="hover:bg-slate-50 transition-colors group search-row">
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center gap-2">
                                     <span class="text-sm font-medium text-slate-900 searchable-text">#<?= str_pad((string)$record['id'], 5, '0', STR_PAD_LEFT) ?></span>
                                     <?php if ($record['receipt_count'] > 0): ?>
-                                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
+                                    <svg class="w-4 h-4 text-slate-400 hidden sm:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"/></svg>
                                     <?php endif; ?>
                                     <?php if ($record['comment_count'] > 0): ?>
                                     <div class="flex items-center gap-1 text-slate-400">
@@ -103,19 +103,19 @@
                                     <?php endif; ?>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 searchable-text">
+                            <td class="hidden sm:table-cell px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-slate-500 searchable-text">
                                 <?= formatDate($record['created_at']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 searchable-text">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 searchable-text">
                                 <?= formatMoney($record['sale_amount']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-brand-600 font-semibold searchable-text">
+                            <td class="hidden md:table-cell px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-brand-600 font-semibold searchable-text">
                                 <?= formatMoney($record['contribution_amount']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
                                 <?= statusBadge($record['status']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <a href="<?= url('/sales/' . $record['id']) ?>" class="text-brand-600 hover:text-brand-900 bg-brand-50 hover:bg-brand-100 px-3 py-1.5 rounded-lg transition-colors">View</a>
                             </td>
                         </tr>

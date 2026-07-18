@@ -78,31 +78,34 @@
             <table class="min-w-full divide-y divide-slate-200">
                 <thead class="bg-slate-50">
                     <tr>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500">Member</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500">Campaign</th>
-                        <th class="px-4 py-3 text-left text-xs font-semibold text-slate-500">Method & Ref</th>
-                        <th class="px-4 py-3 text-right text-xs font-semibold text-slate-500">Amount</th>
-                        <th class="px-4 py-3 text-right text-xs font-semibold text-slate-500">Action</th>
+                        <th class="px-3 sm:px-4 py-3 text-left text-xs font-semibold text-slate-500">Member</th>
+                        <th class="hidden sm:table-cell px-3 sm:px-4 py-3 text-left text-xs font-semibold text-slate-500">Campaign</th>
+                        <th class="hidden md:table-cell px-3 sm:px-4 py-3 text-left text-xs font-semibold text-slate-500">Method & Ref</th>
+                        <th class="px-3 sm:px-4 py-3 text-right text-xs font-semibold text-slate-500">Amount</th>
+                        <th class="px-3 sm:px-4 py-3 text-right text-xs font-semibold text-slate-500">Action</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
                     <?php foreach ($pendingPayments as $payment): ?>
                     <tr class="hover:bg-slate-50">
-                        <td class="px-4 py-3 text-sm font-semibold text-slate-900"><?= e($payment['member_name']) ?></td>
-                        <td class="px-4 py-3 text-sm text-slate-700"><?= e($payment['contribution_title']) ?></td>
-                        <td class="px-4 py-3 text-sm text-slate-700">
+                        <td class="px-3 sm:px-4 py-3 text-sm font-semibold text-slate-900">
+                            <?= e($payment['member_name']) ?>
+                            <div class="sm:hidden text-xs text-slate-500 font-normal mt-0.5"><?= e($payment['contribution_title']) ?></div>
+                        </td>
+                        <td class="hidden sm:table-cell px-3 sm:px-4 py-3 text-sm text-slate-700"><?= e($payment['contribution_title']) ?></td>
+                        <td class="hidden md:table-cell px-3 sm:px-4 py-3 text-sm text-slate-700">
                             <span class="capitalize"><?= str_replace('_', ' ', $payment['payment_method']) ?></span>
                             <br>
                             <span class="text-xs text-slate-500 font-mono"><?= e($payment['reference_code']) ?></span>
                         </td>
-                        <td class="px-4 py-3 text-right text-sm font-bold text-emerald-600">
+                        <td class="px-3 sm:px-4 py-3 text-right text-sm font-bold text-emerald-600">
                             <?= formatMoney($payment['amount']) ?>
                         </td>
-                        <td class="px-4 py-3 text-right">
-                            <form action="<?= url('/contributions/approve-payment/' . $payment['id']) ?>" method="POST" class="flex flex-col sm:flex-row items-end sm:items-center justify-end gap-2">
+                        <td class="px-3 sm:px-4 py-3 text-right">
+                            <form action="<?= url('/contributions/approve-payment/' . $payment['id']) ?>" method="POST" class="flex flex-col xl:flex-row items-end justify-end gap-2">
                                 <?= csrf_field() ?>
-                                <select name="account_id" required class="px-2 py-1 border border-slate-200 rounded text-xs">
-                                    <option value="">Select Office Account...</option>
+                                <select name="account_id" required class="px-2 py-1 border border-slate-200 rounded text-xs w-full max-w-[140px]">
+                                    <option value="">Select Account...</option>
                                     <?php 
                                         $accountModel = new \App\Models\Account();
                                         $accounts = $accountModel->all();
@@ -111,8 +114,10 @@
                                     <option value="<?= $acc['id'] ?>"><?= e($acc['name']) ?> (<?= formatMoney($acc['balance']) ?>)</option>
                                     <?php endforeach; ?>
                                 </select>
-                                <button type="submit" name="action" value="approve" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-semibold transition-colors">Approve</button>
-                                <button type="submit" name="action" value="reject" class="px-3 py-1 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded text-xs font-semibold transition-colors" onclick="return confirm('Are you sure you want to reject this payment?')">Reject</button>
+                                <div class="flex gap-1">
+                                    <button type="submit" name="action" value="approve" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded text-xs font-semibold transition-colors">Approve</button>
+                                    <button type="submit" name="action" value="reject" class="px-2 py-1 bg-rose-100 hover:bg-rose-200 text-rose-700 rounded text-xs font-semibold transition-colors" onclick="return confirm('Are you sure you want to reject this payment?')">Reject</button>
+                                </div>
                             </form>
                         </td>
                     </tr>

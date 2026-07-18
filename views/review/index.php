@@ -63,12 +63,12 @@
             <table class="min-w-full divide-y divide-slate-200" id="recordsTable">
                 <thead class="bg-slate-50">
                     <tr>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Record / Staff</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Contribution</th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
-                        <th scope="col" class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Record / Staff</th>
+                        <th scope="col" class="hidden sm:table-cell px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Date</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Amount</th>
+                        <th scope="col" class="hidden md:table-cell px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Contribution</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                        <th scope="col" class="px-3 sm:px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Action</th>
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-slate-100">
@@ -87,9 +87,9 @@
                     <?php else: ?>
                         <?php foreach ($records as $record): ?>
                         <tr class="hover:bg-slate-50 transition-colors group search-row">
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center gap-3">
-                                    <div class="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-xs font-bold text-slate-600 shrink-0">
+                                    <div class="hidden sm:flex w-8 h-8 rounded-full bg-slate-100 items-center justify-center text-xs font-bold text-slate-600 shrink-0">
                                         <?= e(mb_strtoupper(mb_substr($record['owner_name'], 0, 1))) ?>
                                     </div>
                                     <div>
@@ -103,19 +103,19 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500 searchable-text">
+                            <td class="hidden sm:table-cell px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-slate-500 searchable-text">
                                 <?= formatDate($record['created_at']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 searchable-text">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900 searchable-text">
                                 <?= formatMoney($record['sale_amount']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-brand-600 font-semibold searchable-text">
+                            <td class="hidden md:table-cell px-3 sm:px-6 py-4 whitespace-nowrap text-sm text-brand-600 font-semibold searchable-text">
                                 <?= formatMoney($record['contribution_amount']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap">
                                 <?= statusBadge($record['status']) ?>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                            <td class="px-3 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <?php if ($record['status'] === 'pending'): ?>
                                     <a href="<?= url('/sales/' . $record['id']) ?>" class="text-emerald-600 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition-colors inline-flex items-center gap-1">
                                         Review
