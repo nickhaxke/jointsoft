@@ -1,6 +1,5 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /jointasoft/public/
 
     # Allow direct access to existing files and directories
     RewriteCond %{REQUEST_FILENAME} !-f
